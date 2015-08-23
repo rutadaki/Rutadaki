@@ -1,0 +1,36 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="test_Rutadaki" transaction-type="RESOURCE_LOCAL">
+	    <description>
+            Persistence unit for the JPA Daos in Rutadaki Project
+        </description>
+	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+	    <class>org.fewnuts.rutadaki.domain.Event</class>
+	    <class>org.fewnuts.rutadaki.domain.PuntualEvent</class>
+	    <class>org.fewnuts.rutadaki.domain.LongEvent</class>
+	    <class>org.fewnuts.rutadaki.domain.Hour</class>
+	    <class>org.fewnuts.rutadaki.domain.Category</class>
+	    <class>org.fewnuts.rutadaki.domain.LocationImpl</class>
+	    <class>org.fewnuts.rutadaki.domain.StoredLocation</class>
+	    <class>org.fewnuts.rutadaki.domain.Persistent</class>
+	    <class>org.fewnuts.rutadaki.domain.TimeTable</class>
+	    <class>org.fewnuts.rutadaki.domain.TimeTableEntry</class>
+	    <class>org.fewnuts.rutadaki.domain.City</class>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://detarsis.noip.me:3306/rutadaki_test"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rutadaki_test"/>
+			<property name="javax.persistence.jdbc.user" value="test_user"/>
+			<property name="javax.persistence.jdbc.password" value="test"/>
+			<property name="hibernate.connection.pool_size" value="1"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<property name="show_sql" value="true"/>
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+			
+			 <!-- <property name="hibernate.hbm2ddl.auto" value="update" />  -->
+		</properties>
+	</persistence-unit>
+</persistence>
