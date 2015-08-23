@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="MainApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Rutadaki | Control Panel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+  
+  <!-- JQuery -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  
+  <!-- AngularJS scripts: -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  
+  <!-- Angular-Bootstrap scripts -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+ 
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  
+  <!-- App modules -->
+  <script src="app.js"></script>
+  <script src="controllers/eventsController.js"></script>
+  <script src="controllers/locationsController.js"></script>
+  <script src="controllers/outstandingController.js"></script>
+  <script src="controllers/categorySelectorController.js"></script>
+  <script src="controllers/accountController.js"></script>
+  
+  <!-- App services: -->
+  <script src="serviceModules/authentication.js"></script>
+  <script src="serviceModules/eventService.js"></script>
+  <script src="serviceModules/locationService.js"></script>
+  
+  <!-- Custom Directives -->
+  <script src="directives/ui.imagedrop.js"></script>
+  <script src="directives/ui.imageselect.js"></script>
+  
+  <script src="components/timetable.js"></script>
+  <script src="components/modal.js"></script>
+  
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h1>RUTADAKI - Panel de Control <p><small>Gestiona los eventos de Rutadaki desde cualquier
+				navegador</small></h1>
+			
+		</div>
+		<div class="col-sm-3">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a data-toggle="pill" href="#events">Eventos</a></li>
+				<li><a data-toggle="pill" href="#locations">Localizaciones</a></li>
+				<li><a data-toggle="pill" href="#outstanding">Destacados</a></li>
+
+			</ul>
+		</div>
+		<div class="col-sm-9">
+			<div ng-view=""></div>
+		</div>
+	</div>
+</body>
+</html>

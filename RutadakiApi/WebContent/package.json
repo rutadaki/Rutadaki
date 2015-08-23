@@ -1,0 +1,17 @@
+{
+  "name": "rutadaki-api",
+  "version": "1.0.0",
+  "description": "API for Rutadaki",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Rutadaki",
+    "API",
+    "Control",
+    "Panel"
+  ],
+  "author": "Fernando Llaca",
+  "license": "ISC"
+}

@@ -1,0 +1,9 @@
+<label ng-repeat="category in categories">
+  <input
+    type="checkbox"
+    name="selectedCategories[]"
+    value="{{category.name}}"
+    ng-checked="selectedCategories.indexOf(category.id) > -1"
+    ng-click="toggleSelection(category)"
+  > {{category.name}}
+</label>

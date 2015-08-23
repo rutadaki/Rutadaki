@@ -1,0 +1,30 @@
+<h2> Iniciar sesión:</h2>
+<br>
+<div class="center-block">
+    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Usuario:</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" ng-model="username"
+					placeholder="Usuario">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Contraseña:</label>
+			<div class="col-sm-4">
+				<input class="form-control" type="password" ng-model="password"
+					placeholder="Contraseña">
+			</div>
+		</div>
+
+	</form>
+	
+	<button class="btn btn-primary" ng-click="dologin()">
+		<span class="glyphicon glyphicon-user"></span> Login
+	</button>
+	
+	<img ng-if="dataLoading" src="images/progress_spinner.gif">
+	
+</div>

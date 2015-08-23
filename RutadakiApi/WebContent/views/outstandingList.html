@@ -1,0 +1,82 @@
+<h2>Eventos Destacados</h2>
+<br>
+<progressbar class="progress-striped active" value="loadingPercent"
+	type="info" ng-show="loading"> {{loadingPercent + "%"}} </progressbar>
+
+<div ng-hide="loading">
+
+	<button class="btn btn-success" ng-click="toggleLocationModal()">
+		<span class="glyphicon glyphicon-plus"></span> Añadir
+	</button>
+	<hr>
+	<table class="table table-striped table-hover" ng-hide="loading">
+		<thead>
+
+			<tr>
+				<th>Evento</th>
+				<th>Inicio</th>
+				<th>Lugar</th>
+				<th>Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="event in outstandingEvents">
+				<td>{{ event.title}}</td>
+				<td>{{ event.startDate }}</td>
+				<td>{{ event.location.name}}</td>
+				<td>
+					<button class="btn" ng-click="removeEvent(event)">
+						<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Eliminar
+					</button>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+
+	<modal title="Eventos" visible="showModal">
+
+	<div class="container col-md-12">
+
+		<div class="row">
+			<img src="images/progress_spinner.gif" ng-show="loadingEvents"
+				class="img-responsive center-block">
+		</div>
+
+		<div class="row" ng-hide="loadingEvents">
+			<div class="form-group has-feedback col-sm-6">
+				<input type="text" class="form-control" placeholder="buscar lugar"
+					ng-model="searchEvent"> <i
+					class="glyphicon glyphicon-search form-control-feedback"></i>
+			</div>
+		</div>
+
+		<div class="row" ng-hide="loadingEvents">
+			<div class="list-group">
+				<a ng-repeat="event in events | filter:searchEvent"
+					class="list-group-item" ng-click='selectEvent(event)'>
+					<h4 class="list-group-item-heading">{{event.title}}</h4>
+					<p class="list-group-item-text">Fecha: {{event.startDate}}</p>
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+	</modal>
+</div>
+	
+
+
+<style>
+
+/* Modal scroll*/
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+a[ng-click]{
+    cursor: pointer;
+}
+</style>

@@ -1,0 +1,202 @@
+<h2 ng-show="isNew">Crear Nuevo Evento:</h2>
+<h2 ng-hide="isNew">Editar '{{event.title}}':</h2>
+<br>
+<form class="form-horizontal">
+	<div class="form-group">
+		<label class="col-sm-2 control-label">T&iacute;tulo del
+			evento:</label>
+		<div class="col-sm-4">
+			<input class="form-control" type="text" ng-model="event.title"
+				placeholder="T&iacute;tulo del evento">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Descripci&oacute;n del
+			evento:</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="3" ng-model="event.description"
+				placeholder="Descripci&oacute;n del evento"> </textarea>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Precio:</label>
+		<div class="col-sm-4">
+			<input class="form-control" type="text" ng-model="event.price"
+				placeholder="Precio">
+		</div>
+	</div>
+	
+	<h4>Categorias:</h4>
+	
+	<div ng-controller="categorySelectorCtrl">
+		<div ng-include="'views/categorySelector.html'"></div>
+	</div>
+
+	<hr>
+	<h4>Fechas:</h4>
+	
+	<div class="alert alert-info alert-dismissable">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <strong>¡Ojo!</strong> Si quieres que el evento sea puntual, tienes que poner
+	  la misma fecha de inicio y de fin 
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Inicio:</label>
+		<div class="col-md-6">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="event.startDate"
+					datepicker-popup="yyyy-MM-dd" is-open="openedS" show-button-bar="false" show-weeks="false" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default"
+						ng-click="openStartDate($event)">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Fin:</label>
+		<div class="col-md-6">
+			<p class="input-group">
+				<input type="text" class="form-control" ng-model="event.endDate"
+					datepicker-popup="yyyy-MM-dd" is-open="openedE" show-button-bar="false" show-weeks="false" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default"
+						ng-click="openEndDate($event)">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
+		</div>
+	</div>
+
+	<hr>
+	<h4>Lugar:</h4>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Lugar:</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="event.location.name" ng-disabled='!editLoc'
+				placeholder="Lugar">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Direcci&oacute;n:</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="event.location.address" ng-disabled='!editLoc'
+				placeholder="Direcci&oacute;n">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Ciudad:</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="event.location.city.name" ng-disabled='true'
+				placeholder="Ciudad">
+		</div>
+	</div>
+	
+	<button ng-click="editLocation()" class="btn btn-default" ng-disabled="true">Editar</button>
+	<button ng-click="toggleLocationModal()" class="btn btn-default">Elegir</button>
+
+	<div class="alert alert-warning alert-dismissable" ng-show="editLoc">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <strong>¡Cuidado!</strong> Si cambias una localización almacenada, puede afectar a otros eventos
+	</div>
+	
+	<modal title="Lugares" visible="showModal">
+		 <div class="container col-md-12">
+		 	
+		 	<div class="row">
+				<img src="images/progress_spinner.gif" ng-show="loadingLocations"
+					class="img-responsive center-block">
+			</div>
+			
+      		<div class="row">
+		 
+			    <div class="form-group has-feedback col-sm-6">
+			        <input type="text" class="form-control" placeholder="buscar lugar" ng-model="searchLocation">
+			         <i class="glyphicon glyphicon-search form-control-feedback"></i>     
+			    </div>
+		 
+			</div>
+		
+			<div class="row">
+				<div class="list-group">
+				    <a ng-repeat="loc in locations | filter:searchLocation" class="list-group-item" ng-click='selectLocation(loc)'>
+				      <h4 class="list-group-item-heading">{{loc.name}}</h4>
+				      <p class="list-group-item-text">{{loc.address}}</p>
+				    </a>
+			  	</div>
+		  	</div>
+	  	
+	  	</div>
+	  	
+	
+	</modal>
+	
+	<hr>
+	<h4>Horario:</h4>
+	
+	<rn-timetable ng-model="event.timeTable"></rn-timetable>
+
+	<hr>
+	<h4>Imagen:</h4>
+
+	<img class="img-thumbnail" alt="Evento sin imagen"
+		ng-src="{{imageSrc}}" />
+
+	<progressbar class="progress-striped active" value="progress"
+		type="info" ng-show="progress > 0"> {{progress + "%"}} </progressbar>
+
+	<div class="form-group"> 
+		<input type="file"
+			id="exampleInputFile" ng-file-select="onFileSelect($files)">
+		<p class="help-block">Elige la foto del evento</p>
+	</div>
+
+
+</form>
+
+<div id="file-drop" imagedrop on-image-drop="imageDropped()">
+	Arrastra aqu&iacute; la imagen</div>
+
+
+<style>
+body.dragOver #file-drop {
+	display: block;
+	background-color: red;
+	height: 100px;
+} /* During drag */
+body #file-drop {
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+} /* No drag */
+
+/* Modal scroll*/
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+a[ng-click]{
+    cursor: pointer;
+}
+
+</style>
+
+
+
+
+<hr>
+<button class="btn btn-success" ng-click="saveChanges()">
+	<span class="glyphicon glyphicon-save"></span> Guardar
+</button>

@@ -1,0 +1,28 @@
+{
+  "name": "Rutadaki Api",
+  "version": "0.0.0",
+  "description": "Rutadaki API",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "Rutadaki",
+    "API",
+    "Control",
+    "Panel"
+  ],
+  "authors": [
+    "Fernando Llaca"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "~4.15.35"
+  }
+}
